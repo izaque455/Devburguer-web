@@ -14,6 +14,24 @@ import {
 } from './styles';
 
 export function Login() {
+	const schema = Yup.object({
+		email: Yup.string()
+			.email('Digite um email Valido')
+			.required('O email é obrigatório'),
+		password: Yup.string()
+			.min(6, 'Precisa ter Pelo Menos 6 Caracteres')
+			.required('Degite sua senha'),
+	}).required();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(schema),
+	});
+	const onSubmit = (data) => console.log(data);
+
 	return (
 		<Container>
 			<LeftContainer>
@@ -25,17 +43,19 @@ export function Login() {
 					<br />
 					Acesse com seu <span>Login e senha</span>
 				</Title>
-				<Form>
+				<Form onSubmit={handleSubmit(onSubmit)}>
 					<InputContainer>
 						<label htmlFor='email'>Email</label>
-						<input type='email' />
+						<input type='email' {...register('email')} />
+						<p>{errors.email?.message}</p>
 					</InputContainer>
 
 					<InputContainer>
-						<label htmlFor='email'>Senha</label>
-						<input type='password' />
+						<label htmlFor='password'>Senha</label>
+						<input type='password' {...register('password')} />
+						<p>{errors.password?.message}</p>
 					</InputContainer>
-					<Button>Entrar</Button>
+					<Button type='submit'>Entrar</Button>
 				</Form>
 				<p>
 					Não possui conta <a href='#'> Clique Aqui.</a>
