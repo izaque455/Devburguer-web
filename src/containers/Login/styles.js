@@ -83,6 +83,12 @@ export const InputContainer = styled.div`
 		font-weight: 800;
 		color: #fff;
 	}
+
+	p {
+		color: #dc143c;
+		height: 10px;
+		font-weight: 600;
+	}
 `;
 
 export const Button = styled.button`
