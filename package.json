@@ -14,6 +14,10 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.80.0",
+    "react-multi-carousel": "^2.8.6",
+    "react-router": "^8.0.1",
+    "react-router-dom": "^7.18.0",
+    "react-toastify": "^11.1.0",
     "sim": "^1.0.18",
     "styled-components": "^6.4.2",
     "yup": "^1.7.1"

@@ -14,17 +14,24 @@ import {
 	Link,
 	RightContainer,
 	Title,
-} from './styles';
+} from './styles.js';
 
-export function Login() {
+export function Register() {
 	const navigate = useNavigate();
 	const schema = Yup.object({
+		name: Yup.string().required('O nome é obrigatório'),
+
 		email: Yup.string()
 			.email('Digite um email Valido')
 			.required('O email é obrigatório'),
+
 		password: Yup.string()
 			.min(6, 'Precisa ter Pelo Menos 6 Caracteres')
 			.required('Degite sua senha'),
+
+		passwordConfirm: Yup.string()
+			.oneOf([Yup.ref('password')], 'As Senhas devem ser Iguais')
+			.required('Confirme Sua Senha'),
 	}).required();
 
 	const {
@@ -34,36 +41,33 @@ export function Login() {
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
+
 	const onSubmit = async (data) => {
 		try {
-			const {
-				data: { token },
-			} = await toast.promise(
-				api.post('/sessions', {
+			const { status } = await api.post(
+				'/users',
+				{
+					name: data.name,
 					email: data.email,
 					password: data.password,
-				}),
+				},
 				{
-					pending: 'Verificando Seus Dados ⟳',
-					success: {
-						render() {
-							setTimeout(() => {
-								navigate('/');
-							}, 2000);
-							return 'Seja Bem-vindo(a) ✅';
-						},
-					},
+					validateStatus: () => true,
 				},
 			);
-			localStorage.setItem('token', token);
-			console.log(data);
-		} catch (error) {
-			if (error.status === 400 || error.status === 409) {
-				toast.error('Email Ou Senha Incorretos');
+
+			if (status === 200 || status === 201) {
+				setInterval(() => {
+					navigate('/login');
+				}, 2100);
+				toast.success('Cadastro Feito com Sucesso! 😀');
+			} else if (status === 400 || status === 409) {
+				toast.error('Email Já Cadastrado! Faça Login para Continuar');
 			} else {
-				toast.error('😭 Falha no Nosso Sistema, Tente Novamente.');
+				throw new Error();
 			}
-			console.log(error.status);
+		} catch (error) {
+			toast.error('😭 Falha no Nosso Sistema, Tente Novamente.');
 		}
 	};
 
@@ -73,12 +77,14 @@ export function Login() {
 				<img src={Logo} alt='Logo-DevBurguer' />
 			</LeftContainer>
 			<RightContainer>
-				<Title>
-					Olá, seja bem vindo ao <span> Dev Burguer!</span>
-					<br />
-					Acesse com seu <span>Login e senha</span>
-				</Title>
+				<Title>Criar conta</Title>
 				<Form onSubmit={handleSubmit(onSubmit)}>
+					<InputContainer>
+						<label htmlFor='name'>Nome</label>
+						<input type='text' {...register('name')} />
+						<p>{errors.name?.message}</p>
+					</InputContainer>
+
 					<InputContainer>
 						<label htmlFor='email'>Email</label>
 						<input type='email' {...register('email')} />
@@ -90,10 +96,15 @@ export function Login() {
 						<input type='password' {...register('password')} />
 						<p>{errors.password?.message}</p>
 					</InputContainer>
-					<Button type='submit'>Entrar</Button>
+					<InputContainer>
+						<label htmlFor='passwordConfirm'>Confirmar Senha</label>
+						<input type='password' {...register('passwordConfirm')} />
+						<p>{errors.passwordConfirm?.message}</p>
+					</InputContainer>
+					<Button type='submit'>Criar conta</Button>
 				</Form>
 				<p>
-					Não possui conta? <Link to='/cadastro'> Clique aqui.</Link>
+					Já possui Conta? <Link to='/login'> Clique aqui.</Link>
 				</p>
 			</RightContainer>
 		</Container>

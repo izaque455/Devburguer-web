@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from 'react-toastify';
 import { createGlobalStyle } from 'styled-components';
 
 const globalStyle = createGlobalStyle`
