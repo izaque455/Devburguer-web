@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../assets/Logo.svg';
 import { CardProduct } from '../../components/CardProduct/index.jsx';
 import { api } from '../../services/api.js';
 import { formatPrice } from '../../utils/formatPrice.js';
@@ -69,6 +70,13 @@ export function Menu() {
 	return (
 		<Container>
 			<Banner>
+				<button
+					type='button'
+					onClick={() => navigate({ pathname: '/' })}
+					aria-label='Voltar'
+				>
+					<img src={logo} alt='' />
+				</button>
 				<h1>
 					O MELHOR
 					<br />

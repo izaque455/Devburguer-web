@@ -16,6 +16,9 @@ export const Banner = styled.div`
         right: 20%;
         top: 10%;
     }
+    img{
+        width: 100px;
+    }
 `;
 export const Container = styled.section`
 	background:url('${BackgroundHome}');

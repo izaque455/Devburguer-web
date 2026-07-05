@@ -24,6 +24,14 @@ export const Banner = styled.div`
     background-size: cover;
     width: 100%;
 
+    img{
+        width: 100px;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        cursor: pointer;
+    }
+
 
     h1{
         font-family: 'Road Rage', sans-serif;
@@ -42,6 +50,7 @@ export const Banner = styled.div`
             font-size: 20px;
             font-weight: 400;
         }
+        
 }
 `;
 export const CategoryMenu = styled.div`
