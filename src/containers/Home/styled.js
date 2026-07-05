@@ -19,6 +19,8 @@ export const Banner = styled.div`
 `;
 export const Container = styled.section`
 	background:url('${BackgroundHome}');
-    height: 500px;
+    height: 100%;
 `;
-export const Content = styled.div``;
+export const Content = styled.div`
+	padding-bottom: 30px;
+`;
