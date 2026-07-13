@@ -1,6 +1,4 @@
-import { CategoryCarousel } from '../../components/CategoryCarousel/index.jsx';
-import { OfferCarousel } from '../../components/OffersCarousel/index.jsx';
-import { useUser } from '../../hooks/UserContext.jsx';
+import { CategoryCarousel, OfferCarousel } from '../../components';
 import { Banner, Container, Content } from './styled';
 
 export function Home() {

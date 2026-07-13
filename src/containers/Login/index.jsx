@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import Logo from '../../assets/Logo.svg';
 import { Button } from '../../components/Button/index.jsx';
+import { useUser } from '../../hooks/UserContext.jsx';
 import { api } from '../../services/api.js';
 import {
 	Container,
@@ -18,6 +19,8 @@ import {
 
 export function Login() {
 	const navigate = useNavigate();
+	const { putUserData } = useUser();
+
 	const schema = Yup.object({
 		email: Yup.string()
 			.email('Digite um email Valido')
@@ -36,27 +39,22 @@ export function Login() {
 	});
 	const onSubmit = async (data) => {
 		try {
-			const {
-				data: { token },
-			} = await toast.promise(
+			const { data: userData } = await toast.promise(
 				api.post('/sessions', {
 					email: data.email,
 					password: data.password,
 				}),
 				{
 					pending: 'Verificando Seus Dados ⟳',
-					success: {
-						render() {
-							setTimeout(() => {
-								navigate('/');
-							}, 2000);
-							return 'Seja Bem-vindo(a) ✅';
-						},
-					},
+					success: 'Seja Bem-vindo(a) ✅',
 				},
 			);
-			localStorage.setItem('token', token);
-			console.log(data);
+
+			putUserData(userData);
+
+			setTimeout(() => {
+				navigate('/');
+			}, 3000);
 		} catch (error) {
 			if (error.status === 400 || error.status === 409) {
 				toast.error('Email Ou Senha Incorretos');

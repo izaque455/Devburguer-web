@@ -1,8 +1,8 @@
+import { Car } from '@phosphor-icons/react';
 import { createBrowserRouter } from 'react-router-dom';
-import { Home } from '../containers/Home';
-import { Login } from '../containers/Login';
-import { Menu } from '../containers/Menu';
-import { Register } from '../containers/Register';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { Cart, Home, Login, Menu, Register } from '../containers';
 
 export const router = createBrowserRouter([
 	{
@@ -15,10 +15,30 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/',
-		element: <Home />,
+		element: (
+			<>
+				<Header />
+				<Home />
+				<Footer />
+			</>
+		),
 	},
 	{
 		path: '/cardapio',
-		element: <Menu />,
+		element: (
+			<>
+				<Header />
+				<Menu />
+			</>
+		),
+	},
+	{
+		path: '/carrinho',
+		element: (
+			<>
+				<Header />
+				<Cart />
+			</>
+		),
 	},
 ]);

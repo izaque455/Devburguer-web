@@ -57,7 +57,7 @@ export function Register() {
 			);
 
 			if (status === 200 || status === 201) {
-				setInterval(() => {
+				setTimeout(() => {
 					navigate('/login');
 				}, 2100);
 				toast.success('Cadastro Feito com Sucesso! 😀');

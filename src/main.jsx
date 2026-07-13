@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
 	<StrictMode>
 		<AppProvider>
 			<RouterProvider router={router} />
-			<ToastContainer autoClose={2000} theme='colored' />
+			<ToastContainer autoClose={3000} theme='colored' />
 			<GlobalStyle />
 		</AppProvider>
 	</StrictMode>,

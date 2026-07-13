@@ -19,7 +19,6 @@ export function CategoryCarousel() {
 		async function loadCategories() {
 			const { data } = await api.get('/categories');
 
-			console.log(data);
 			setCategories(data);
 		}
 		loadCategories();
