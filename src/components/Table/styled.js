@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Root = styled.table`
 	width: 100%;
 	border-collapse: collapse;
-	background-color: #fff;
+	background-color: ${(props) => props.theme.white};
 	border-radius: 20px;
 `;
 export const Header = styled.thead``;
@@ -11,7 +11,7 @@ export const Tr = styled.tr``;
 export const Th = styled.th`
 	padding: 16px;
 	text-align: left;
-	color: #fff;
+	color: ${(props) => props.theme.white};
 	background-color: #484848;
 	border-bottom: 1px solid #cdcdcd;
 	&:last-child {

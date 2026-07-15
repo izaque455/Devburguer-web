@@ -5,8 +5,8 @@ export const ContainerButton = styled.button`
 	height: 52px;
 	border: none;
 	border-radius: 5px;
-	background-color: #9758a6;
-	color: #fff;
+	background-color: ${(props) => props.theme.purple};
+	color: ${(props) => props.theme.white};
 	font-family: 'Road Rage', sans-serif;
 	font-size: 30px;
 	transition: 0.5s;

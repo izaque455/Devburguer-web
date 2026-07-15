@@ -7,7 +7,7 @@ export const Container = styled.div`
 	gap: 40px;
 	padding: 20px;
 	border-radius: 29px;
-	background-color: #fff;
+	background-color: ${(props) => props.theme.white};
 	cursor: grab;
 	box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.15);
 	transition: 0.5s;
@@ -20,7 +20,7 @@ export const Container = styled.div`
 		flex-direction: column;
 		justify-content: flex-start;
 		p {
-			color: #ff8c05;
+			color: ${(props) => props.theme.orange};
 			font-weight: bold;
 			font-size: 18px;
 			line-height: 20px;

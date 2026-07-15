@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
-	background-color: #ffffff;
+	background-color: ${(props) => props.theme.white}fff;
 
 	border-radius: 20px;
 	justify-content: space-between;
@@ -25,7 +25,7 @@ export const Container = styled.div`
 			font-weight: 700;
 			margin-bottom: 20px;
 			background-color: #484848;
-			color: #ffffff;
+			color: ${(props) => props.theme.white}fff;
 			padding: 15px;
 			text-align: center;
 			border-top-left-radius: 25px;

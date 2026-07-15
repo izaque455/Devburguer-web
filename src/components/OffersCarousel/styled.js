@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 export const Title = styled.h2`
 	font-size: 32px;
-	color: #61a120;
+	color: ${(props) => props.theme.gren};
 	font-weight: 800;
 	padding-bottom: 12px;
 	position: relative;
@@ -32,7 +32,7 @@ export const Title = styled.h2`
 		width: 56px;
 		height: 4px;
 		bottom: 0;
-		background-color: #61a120;
+		background-color: ${(props) => props.theme.gren};
 		left: calc(50% - 28px);
 	}
 `;

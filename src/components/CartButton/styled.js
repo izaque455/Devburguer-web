@@ -4,12 +4,12 @@ export const ContainerButton = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #9758a6;
+	background-color: ${(props) => props.theme.purple};
 	width: 100%;
 	height: 40px;
 	border: none;
 	border-radius: 5px;
-	color: #fff;
+	color: ${(props) => props.theme.white};
 	transition: 0.5s;
 
 	&:hover {

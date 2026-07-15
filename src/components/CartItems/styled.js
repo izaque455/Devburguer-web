@@ -16,9 +16,9 @@ export const ButtonGroup = styled.div`
 		align-items: center;
 		height: 30px;
 		width: 30px;
-		color: #fff;
+		color: ${(props) => props.theme.white};
 		border-radius: 4px;
-		background-color: #9758a6;
+		background-color: ${(props) => props.theme.purple};
 		transition: all 0.3s;
 		border: none;
 
@@ -33,7 +33,7 @@ export const EmpryCart = styled.p`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #61a120;
+	color: ${(props) => props.theme.gren};
 	width: 330%;
 `;
 export const TotalPrice = styled.p`

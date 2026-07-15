@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Container = styled.div`
     background-color: #5C2669;
@@ -9,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     p{
-        color: #fff;
+        color: ${(props) => props.theme.white};
         font-size: 14px;
     }
-`
+`;

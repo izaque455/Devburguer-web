@@ -54,6 +54,11 @@ export function Login() {
 
 			setTimeout(() => {
 				navigate('/');
+				if (userData?.admin) {
+					navigate('/admin/pedidos');
+				} else {
+					navigate('/');
+				}
 			}, 3000);
 		} catch (error) {
 			if (error.status === 400 || error.status === 409) {

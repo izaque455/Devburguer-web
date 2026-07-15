@@ -36,7 +36,7 @@ export const Banner = styled.div`
     h1{
         font-family: 'Road Rage', sans-serif;
         font-size: 90px;
-        color: #fff;
+        color: ${(props) => props.theme.white};
         line-height: 65px;
         align-items: center;
         position: absolute;
@@ -46,7 +46,7 @@ export const Banner = styled.div`
 
         span{
             display: block;
-            color: #fff;
+            color: ${(props) => props.theme.white};
             font-size: 20px;
             font-weight: 400;
         }
@@ -63,13 +63,13 @@ export const CategoryMenu = styled.div`
 export const CategoryButton = styled(Link)`
 	text-decoration: none;
 	cursor: pointer;
-	color: ${(props) => (props.$isActoveCategory ? '#9758a6' : '#696969')};
+	color: ${(props) => (props.$isActoveCategory ? `${props.theme.purple}` : '#696969')};
 	background: none;
 	font-size: 24px;
 	font-weight: 500;
 	padding-bottom: 7px;
 	line-height: 20px;
-	border-bottom: ${(props) => props.$isActoveCategory && '3px solid #9758a6'};
+	border-bottom: ${(props) => props.$isActoveCategory && `3px solid ${props.theme.purple}`};
 `;
 export const ProductsContainer = styled.div`
 	display: grid;

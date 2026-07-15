@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCart } from '../../hooks/CartContext.jsx';
 import { api } from '../../services/api.js';
@@ -7,10 +8,12 @@ import { Button } from '../Button';
 import { Container } from './styled';
 
 export function CartResume() {
-	const [finalPrice, setFinalPrice] = useState(0);
-	const [deliveryTax] = useState(500);
-
 	const { cartProducts, clearCart } = useCart();
+
+	const [finalPrice, setFinalPrice] = useState(0);
+	const deliveryTax = cartProducts.length === 0 ? 0 : 500;
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const sumAllItems = cartProducts.reduce((acc, current) => {
@@ -19,6 +22,38 @@ export function CartResume() {
 
 		setFinalPrice(sumAllItems);
 	}, [cartProducts]);
+	const submitOrder = async () => {
+		const products = cartProducts.map((product) => {
+			return {
+				id: product.id,
+				quantity: product.quantity,
+			};
+		});
+
+		try {
+			const { status } = await api.post(
+				'/orders',
+				{ products },
+				{
+					validateStatus: () => true,
+				},
+			);
+
+			if (status === 200 || status === 201) {
+				setTimeout(() => {
+					navigate('/');
+				}, 2100);
+				clearCart();
+				toast.success('Pedido Realizado Com Sucesso! 😀');
+			} else if (status === 400 || status === 409) {
+				toast.error('Falha ao Realizar o Seu Pedido');
+			} else {
+				throw new Error();
+			}
+		} catch (error) {
+			toast.error('😭 Falha no Nosso Sistema, Tente Novamente.');
+		}
+	};
 
 	return (
 		<div>
@@ -35,7 +70,7 @@ export function CartResume() {
 					<p>{formatPrice(finalPrice + deliveryTax)}</p>
 				</div>
 			</Container>
-			<Button>FinalizarPedido</Button>
+			<Button onClick={submitOrder}>FinalizarPedido</Button>
 		</div>
 	);
 }
