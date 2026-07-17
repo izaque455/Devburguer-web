@@ -1,42 +1,69 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	max-width: 700px;
-	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
 	padding: 24px;
+	background: ${(props) => props.theme.secondWhite};
 `;
 
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	background-color: ${(props) => props.theme.blackGray};
+	padding: 32px;
+	border-radius: 20px;
+	width: 100%;
+	max-width: 380px;
+	gap: 12px;
+`;
+
+export const Title = styled.h2`
+	margin: 0 0 16px;
+	color: ${(props) => props.theme.white};
+	font-size: 1.8rem;
+	letter-spacing: 0.02em;
+	font-weight: 700;
 `;
 
 export const InputGroup = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 4px;
+	color: ${(props) => props.theme.white};
+	font-size: 14px;
 `;
 
 export const Label = styled.label`
 	font-weight: 600;
-	color: #333;
 `;
 
 export const Input = styled.input`
-	padding: 10px 12px;
-	border: 1px solid #ccc;
-	border-radius: 8px;
+	width: 100%;
+	height: 48px;
+	border-radius: 5px;
+	padding: 0 12px;
+	border: none;
+	font-size: 1rem;
 `;
 
 export const SubmitButton = styled.button`
-	padding: 12px 16px;
+	width: 100%;
+	height: 52px;
 	border: none;
-	border-radius: 8px;
-	background-color: ${({ theme }) => theme?.purple || '#9758a6'};
-	color: #fff;
-	font-weight: 700;
+	border-radius: 5px;
+	background-color: ${(props) => props.theme.purple};
+	color: ${(props) => props.theme.white};
+	font-family: ${(props) => props.theme.roadRageFont};
+	font-size: 1.2rem;
+	transition: 0.5s;
 	cursor: pointer;
+
+	&:hover {
+		background-color: ${(props) => props.theme.secondDarkPurple};
+	}
 `;
 
 export const ImagePreview = styled.img`
@@ -52,7 +79,7 @@ export const PreviewBox = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px dashed #ccc;
+	border: 1px dashed ${(props) => props.theme.white};
 	border-radius: 12px;
-	color: #777;
+	color: ${(props) => props.theme.white};
 `;

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
-import { standardTheme } from '../../../styles/themes/starndard';
 import {
 	Container,
 	Form,
@@ -12,6 +11,7 @@ import {
 	Label,
 	PreviewBox,
 	SubmitButton,
+	Title,
 } from './styled';
 
 export function EditProduct() {
@@ -120,8 +120,8 @@ export function EditProduct() {
 
 	return (
 		<Container>
-			<h2>Editar produto</h2>
 			<Form onSubmit={handleSubmit}>
+				<Title>Editar produto</Title>
 				<InputGroup>
 					<Label>Nome</Label>
 					<Input
@@ -172,12 +172,7 @@ export function EditProduct() {
 					/>
 				</InputGroup>
 
-				<SubmitButton
-					type='submit'
-					style={{ backgroundColor: standardTheme.purple }}
-				>
-					Salvar alterações
-				</SubmitButton>
+				<SubmitButton type='submit'>Salvar alterações</SubmitButton>
 			</Form>
 		</Container>
 	);

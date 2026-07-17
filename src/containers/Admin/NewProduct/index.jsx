@@ -20,6 +20,7 @@ import {
 const schema = yup.object({
 	name: yup.string().required('Digite o Nome do Produto'),
 	price: yup.number().positive().required('Digite o Preço do Produto'),
+	offer: yup.string().required('Escolha se está em oferta'),
 	category: yup.object().required('Escolha uma categoria'),
 	file: yup
 		.mixed()
@@ -65,10 +66,11 @@ export function NewProduct() {
 		productFormData.append('name', data.name);
 		productFormData.append('price', data.price * 100);
 		productFormData.append('category_id', data.category.id);
+		productFormData.append('offer', data.offer === 'true' ? 'true' : 'false');
 		productFormData.append('file', data.file[0]);
 
 		await toast.promise(api.post('/products', productFormData), {
-			pending: 'Adicionando Produto>...',
+			pending: 'Adicionando Produto... ',
 			success: 'Produto Criado com Sucesso!',
 			error: 'Falha ao Adicionar o Produto, Tente Novamente',
 		});
@@ -85,8 +87,17 @@ export function NewProduct() {
 					</InputGroup>
 					<InputGroup>
 						<Label>Preço</Label>
-						<Input type='number' {...register('number')} />
+						<Input type='number' {...register('price')} />
 						<ErrorMessage>{errors?.price?.message}</ErrorMessage>
+					</InputGroup>
+					<InputGroup>
+						<Label>Produto em oferta</Label>
+						<select {...register('offer')}>
+							<option value=''>Selecione</option>
+							<option value='true'>Sim</option>
+							<option value='false'>Não</option>
+						</select>
+						<ErrorMessage>{errors?.offer?.message}</ErrorMessage>
 					</InputGroup>
 					<InputGroup>
 						<LabelUploand>
