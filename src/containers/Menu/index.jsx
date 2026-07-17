@@ -96,6 +96,7 @@ export function Menu() {
 							setActiveCategory(category.id);
 						}}
 					>
+						{' '}
 						{category.name}
 					</CategoryButton>
 				))}
